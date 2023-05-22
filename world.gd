@@ -5,7 +5,7 @@ extends Node2D
 
 
 func _ready() -> void:
-	var used := tile_map.get_used_rect()
+	var used := tile_map.get_used_rect().grow(-1)
 	var tile_size := tile_map.tile_set.tile_size
 	
 	camera_2d.limit_top = used.position.y * tile_size.y
