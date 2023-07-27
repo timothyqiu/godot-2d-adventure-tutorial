@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://b3rfo2ikmhgb4"]
+
+[ext_resource type="Script" path="res://addons/com.timothyqiu.animation-resetter/complete_tracks_dialog.gd" id="1_lj8eq"]
+
+[node name="CompleteTracksDialog" type="ConfirmationDialog"]
+size = Vector2i(272, 313)
+script = ExtResource("1_lj8eq")
+
+[node name="Tree" type="Tree" parent="."]
+custom_minimum_size = Vector2(256, 256)
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 264.0
+offset_bottom = 264.0
+columns = 2
+hide_root = true
+select_mode = 1
