@@ -556,6 +556,7 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D"]
+collision_layer = 2
 script = ExtResource("1_vlv3c")
 
 [node name="Graphics" type="Node2D" parent="."]
