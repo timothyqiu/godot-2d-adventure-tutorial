@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bys6xbjr8eger"]
+[gd_scene load_steps=16 format=3 uid="uid://bys6xbjr8eger"]
 
 [ext_resource type="PackedScene" uid="uid://cipdxm3y4dwej" path="res://enemies/enemy.tscn" id="1_6ltnx"]
 [ext_resource type="Texture2D" uid="uid://d0dsdbx8m5sp8" path="res://assets/legacy_fantasy/Boar/Idle-Sheet.png" id="2_0exfc"]
@@ -6,6 +6,12 @@
 [ext_resource type="Texture2D" uid="uid://dhxnhep8aejpe" path="res://assets/legacy_fantasy/Boar/Hit-Sheet.png" id="3_wgww7"]
 [ext_resource type="Texture2D" uid="uid://ct1ug71qwngr4" path="res://assets/legacy_fantasy/Boar/Walk-Base-Sheet.png" id="4_7g0qo"]
 [ext_resource type="Texture2D" uid="uid://b83cr3ueuv1xg" path="res://assets/legacy_fantasy/Boar/Run-Sheet.png" id="5_03kd5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hh4un"]
+size = Vector2(22, 22)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y21xl"]
+size = Vector2(38, 7)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hilef"]
 radius = 11.0
@@ -242,6 +248,22 @@ collision_mask = 3
 position = Vector2(-14, -1)
 target_position = Vector2(0, 4)
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Graphics/Hitbox" index="0"]
+position = Vector2(0, -11)
+shape = SubResource("RectangleShape2D_hh4un")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Graphics/Hitbox" index="1"]
+position = Vector2(0, -9.5)
+shape = SubResource("RectangleShape2D_y21xl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Graphics/Hurtbox" index="0"]
+position = Vector2(0, -11)
+shape = SubResource("RectangleShape2D_hh4un")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Graphics/Hurtbox" index="1"]
+position = Vector2(0, -9.5)
+shape = SubResource("RectangleShape2D_y21xl")
+
 [node name="CollisionShape2D" parent="." index="1"]
 position = Vector2(0, -11)
 shape = SubResource("CircleShape2D_hilef")
@@ -254,3 +276,5 @@ libraries = {
 [node name="CalmDownTimer" type="Timer" parent="." index="4"]
 wait_time = 2.5
 one_shot = true
+
+[connection signal="hurt" from="Graphics/Hurtbox" to="." method="_on_hurtbox_hurt"]
