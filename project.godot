@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="2D Adventure"
-run/main_scene="res://world.tscn"
+run/main_scene="res://worlds/forest.tscn"
 config/features=PackedStringArray("4.1", "GL Compatibility")
 config/icon="res://assets/icon.svg"
+
+[autoload]
+
+Game="*res://globals/game.tscn"
 
 [display]
 
