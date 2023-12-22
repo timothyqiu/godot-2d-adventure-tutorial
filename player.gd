@@ -1,6 +1,11 @@
 class_name Player
 extends CharacterBody2D
 
+enum Direction {
+	LEFT = -1,
+	RIGHT = +1,
+}
+
 enum State {
 	IDLE,
 	RUNNING,
@@ -35,6 +40,12 @@ const SLIDING_ENERGY := 4.0
 const LANDING_HEIGHT := 100.0
 
 @export var can_combo := false
+@export var direction := Direction.RIGHT:
+	set(v):
+		direction = v
+		if not is_node_ready():
+			await ready
+		graphics.scale.x = direction
 
 var default_gravity := ProjectSettings.get("physics/2d/default_gravity") as float
 var is_first_tick := false
@@ -50,7 +61,7 @@ var interacting_with: Array[Interactable]
 @onready var hand_checker: RayCast2D = $Graphics/HandChecker
 @onready var foot_checker: RayCast2D = $Graphics/FootChecker
 @onready var state_machine: Node = $StateMachine
-@onready var stats: Node = $Stats
+@onready var stats: Node = Game.player_stats
 @onready var invincible_timer: Timer = $InvincibleTimer
 @onready var slide_request_timer: Timer = $SlideRequestTimer
 @onready var interaction_icon: AnimatedSprite2D = $InteractionIcon
@@ -101,12 +112,12 @@ func tick_physics(state: State, delta: float) -> void:
 		
 		State.WALL_SLIDING:
 			move(default_gravity / 3, delta)
-			graphics.scale.x = get_wall_normal().x
+			direction = Direction.LEFT if get_wall_normal().x < 0 else Direction.RIGHT
 		
 		State.WALL_JUMP:
 			if state_machine.state_time < 0.1:
 				stand(0.0 if is_first_tick else default_gravity, delta)
-				graphics.scale.x = get_wall_normal().x
+				direction = Direction.LEFT if get_wall_normal().x < 0 else Direction.RIGHT
 			else:
 				move(default_gravity, delta)
 		
@@ -126,13 +137,13 @@ func tick_physics(state: State, delta: float) -> void:
 	
 
 func move(gravity: float, delta: float) -> void:
-	var direction := Input.get_axis("move_left", "move_right")
+	var movement := Input.get_axis("move_left", "move_right")
 	var acceleration := FLOOR_ACCELERATION if is_on_floor() else AIR_ACCELERATION
-	velocity.x = move_toward(velocity.x, direction * RUN_SPEED, acceleration * delta)
+	velocity.x = move_toward(velocity.x, movement * RUN_SPEED, acceleration * delta)
 	velocity.y += gravity * delta
 	
-	if not is_zero_approx(direction):
-		graphics.scale.x = -1 if direction < 0 else +1
+	if not is_zero_approx(movement):
+		direction = Direction.LEFT if movement < 0 else Direction.RIGHT
 	
 	move_and_slide()
 
@@ -195,8 +206,8 @@ func get_next_state(state: State) -> int:
 	if state in GROUND_STATES and not is_on_floor():
 		return State.FALL
 	
-	var direction := Input.get_axis("move_left", "move_right")
-	var is_still := is_zero_approx(direction) and is_zero_approx(velocity.x)
+	var movement := Input.get_axis("move_left", "move_right")
+	var is_still := is_zero_approx(movement) and is_zero_approx(velocity.x)
 	
 	match state:
 		State.IDLE:

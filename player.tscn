@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://d08n7x2g8jvfe"]
+[gd_scene load_steps=35 format=3 uid="uid://d08n7x2g8jvfe"]
 
 [ext_resource type="Texture2D" uid="uid://dg2rvq5qp11a2" path="res://assets/generic_char/char_blue_1.png" id="1_7ylvt"]
 [ext_resource type="Script" path="res://player.gd" id="1_vlv3c"]
@@ -6,7 +6,6 @@
 [ext_resource type="Script" path="res://classes/StateMachine.gd" id="3_2nxuk"]
 [ext_resource type="Script" path="res://classes/Hurtbox.gd" id="3_6gh42"]
 [ext_resource type="Script" path="res://classes/Hitbox.gd" id="4_ksant"]
-[ext_resource type="Script" path="res://classes/Stats.gd" id="7_wld66"]
 [ext_resource type="PackedScene" uid="uid://bgwkfcw43ryl8" path="res://ui/status_panel.tscn" id="8_kml5q"]
 [ext_resource type="Texture2D" uid="uid://k6efxux5uoet" path="res://assets/gdb-gamepad-2/gdb-keyboard-2.png" id="9_a7vtb"]
 
@@ -2402,17 +2401,13 @@ one_shot = true
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("3_2nxuk")
 
-[node name="Stats" type="Node" parent="."]
-script = ExtResource("7_wld66")
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="StatusPanel" parent="CanvasLayer" node_paths=PackedStringArray("stats") instance=ExtResource("8_kml5q")]
+[node name="StatusPanel" parent="CanvasLayer" instance=ExtResource("8_kml5q")]
 offset_left = 8.0
 offset_top = 8.0
 offset_right = 96.0
 offset_bottom = 34.0
-stats = NodePath("../../Stats")
 
 [node name="InteractionIcon" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -43)
