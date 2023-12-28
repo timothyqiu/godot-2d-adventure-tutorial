@@ -67,6 +67,10 @@ var interacting_with: Array[Interactable]
 @onready var interaction_icon: AnimatedSprite2D = $InteractionIcon
 
 
+func _ready() -> void:
+	stand(default_gravity, 0.01)
+
+
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("jump"):
 		jump_request_timer.start()
@@ -287,11 +291,11 @@ func get_next_state(state: State) -> int:
 
 
 func transition_state(from: State, to: State) -> void:
-#	print("[%s] %s => %s" % [
-#		Engine.get_physics_frames(),
-#		State.keys()[from] if from != -1 else "<START>",
-#		State.keys()[to],
-#	])
+	print("[%s] %s => %s" % [
+		Engine.get_physics_frames(),
+		State.keys()[from] if from != -1 else "<START>",
+		State.keys()[to],
+	])
 	
 	if from not in GROUND_STATES and to in GROUND_STATES:
 		coyote_timer.stop()
