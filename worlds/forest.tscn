@@ -328,3 +328,6 @@ region_rect = Rect2(210, 197, 124, 86)
 
 [node name="Boar" parent="." instance=ExtResource("9_gket7")]
 position = Vector2(456, 144)
+
+[node name="Boar2" parent="." instance=ExtResource("9_gket7")]
+position = Vector2(344, 192)
