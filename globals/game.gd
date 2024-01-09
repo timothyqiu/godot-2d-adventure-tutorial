@@ -1,5 +1,7 @@
 extends Node
 
+const SAVE_PATH := "user://data.sav"
+
 # 场景的名称 => {
 #   enemies_alive => [ 敌人的路径 ]
 # }
@@ -13,7 +15,7 @@ func _ready() -> void:
 	color_rect.color.a = 0
 
 
-func change_scene(path: String, entry_point: String) -> void:
+func change_scene(path: String, params := {}) -> void:
 	var tree := get_tree()
 	tree.paused = true
 	
@@ -26,6 +28,9 @@ func change_scene(path: String, entry_point: String) -> void:
 	world_states[old_name] = tree.current_scene.to_dict()
 	
 	tree.change_scene_to_file(path)
+	if "init" in params:
+		params.init.call()
+	
 	await tree.process_frame  # 4.2 以前
 #	await tree.tree_changed  # 4.2 开始
 	
@@ -33,12 +38,66 @@ func change_scene(path: String, entry_point: String) -> void:
 	if new_name in world_states:
 		tree.current_scene.from_dict(world_states[new_name])
 	
-	for node in tree.get_nodes_in_group("entry_points"):
-		if node.name == entry_point:
-			tree.current_scene.update_player(node.global_position, node.direction)
-			break
+	if "entry_point" in params:
+		for node in tree.get_nodes_in_group("entry_points"):
+			if node.name == params.entry_point:
+				tree.current_scene.update_player(node.global_position, node.direction)
+				break
+	
+	if "position" in params and "direction" in params:
+		tree.current_scene.update_player(params.position, params.direction)
 	
 	tree.paused = false
 	
 	tween = create_tween()
 	tween.tween_property(color_rect, "color:a", 0, 0.2)
+
+
+func save_game() -> void:
+	var scene := get_tree().current_scene
+	var scene_name := scene.scene_file_path.get_file().get_basename()
+	world_states[scene_name] = scene.to_dict()
+	
+	var data := {
+		world_states=world_states,
+		stats=player_stats.to_dict(),
+		scene=scene.scene_file_path,
+		player={
+			direction=scene.player.direction,
+			position={
+				x=scene.player.global_position.x,
+				y=scene.player.global_position.y,
+			},
+		},
+	}
+	var json := JSON.stringify(data)
+	var file := FileAccess.open(SAVE_PATH, FileAccess.WRITE)
+	if not file:
+		return
+	file.store_string(json)
+
+
+func load_game() -> void:
+	var file := FileAccess.open(SAVE_PATH, FileAccess.READ)
+	if not file:
+		return
+	
+	var json := file.get_as_text()
+	var data := JSON.parse_string(json) as Dictionary
+	
+	
+	change_scene(data.scene, {
+		direction=data.player.direction,
+		position=Vector2(
+			data.player.position.x,
+			data.player.position.y
+		),
+		init=func ():
+			world_states = data.world_states
+			player_stats.from_dict(data.stats)
+	})
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_cancel"):
+		load_game()
