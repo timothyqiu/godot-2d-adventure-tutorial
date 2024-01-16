@@ -2402,6 +2402,7 @@ one_shot = true
 script = ExtResource("3_2nxuk")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 20
 
 [node name="StatusPanel" parent="CanvasLayer" instance=ExtResource("8_kml5q")]
 offset_left = 8.0

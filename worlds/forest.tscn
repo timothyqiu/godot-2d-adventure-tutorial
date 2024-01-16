@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bmfcrratgaax0"]
+[gd_scene load_steps=12 format=3 uid="uid://bmfcrratgaax0"]
 
 [ext_resource type="Script" path="res://worlds/world.gd" id="1_f0dk2"]
 [ext_resource type="Texture2D" uid="uid://mp1ebc7vgi6r" path="res://assets/legacy_fantasy/Trees/Tree-Assets.png" id="2_1qp64"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://51vtw4x440s" path="res://objects/mine_gate.tscn" id="3_mx3sn"]
 [ext_resource type="Script" path="res://classes/EntryPoint.gd" id="4_12a82"]
 [ext_resource type="PackedScene" uid="uid://d08n7x2g8jvfe" path="res://player.tscn" id="5_ghy24"]
+[ext_resource type="PackedScene" uid="uid://btn7p3ng6glfl" path="res://objects/save_stone.tscn" id="5_lwerj"]
 [ext_resource type="Texture2D" uid="uid://cm3ahnc8s7hw" path="res://assets/legacy_fantasy/Background/Background.png" id="6_cavlc"]
 [ext_resource type="Texture2D" uid="uid://cjfeccnxygvqq" path="res://assets/legacy_fantasy/Trees/Background-Hills.png" id="7_jt3dx"]
 [ext_resource type="Texture2D" uid="uid://bhvt8r63i50qa" path="res://assets/legacy_fantasy/Trees/Background-Trees.png" id="8_nnvqc"]
@@ -53,6 +54,9 @@ script = ExtResource("4_12a82")
 position = Vector2(752, 144)
 script = ExtResource("4_12a82")
 direction = -1
+
+[node name="SaveStone" parent="TileMap" instance=ExtResource("5_lwerj")]
+position = Vector2(112, 160)
 
 [node name="Player" parent="." instance=ExtResource("5_ghy24")]
 position = Vector2(528, 144)
