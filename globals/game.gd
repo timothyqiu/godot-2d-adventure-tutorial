@@ -31,8 +31,8 @@ func change_scene(path: String, params := {}) -> void:
 	if "init" in params:
 		params.init.call()
 	
-	await tree.process_frame  # 4.2 以前
-#	await tree.tree_changed  # 4.2 开始
+	#await tree.process_frame  # 4.2 以前
+	await tree.tree_changed  # 4.2 开始
 	
 	var new_name := tree.current_scene.scene_file_path.get_file().get_basename()
 	if new_name in world_states:

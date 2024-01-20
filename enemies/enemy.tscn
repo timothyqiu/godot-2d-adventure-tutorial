@@ -27,6 +27,7 @@ script = ExtResource("3_d34iw")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+deterministic = true
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("1_8eahb")

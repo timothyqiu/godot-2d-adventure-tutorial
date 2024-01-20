@@ -21,7 +21,7 @@ func update_player(pos: Vector2, direction: Player.Direction) -> void:
 	player.fall_from_y = pos.y
 	player.direction = direction
 	camera_2d.reset_smoothing()
-#	camera_2d.force_update_scroll()  # 4.2 开始
+	camera_2d.force_update_scroll()  # 4.2 开始
 
 
 func to_dict() -> Dictionary:
