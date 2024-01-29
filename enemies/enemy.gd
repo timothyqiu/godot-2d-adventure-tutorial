@@ -6,6 +6,8 @@ enum Direction {
 	RIGHT = +1,
 }
 
+signal died
+
 @export var direction := Direction.LEFT:
 	set(v):
 		direction = v
@@ -31,4 +33,5 @@ func move(speed: float, delta: float) -> void:
 
 
 func die() -> void:
+	died.emit()
 	queue_free()

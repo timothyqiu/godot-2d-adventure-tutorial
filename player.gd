@@ -65,6 +65,7 @@ var interacting_with: Array[Interactable]
 @onready var invincible_timer: Timer = $InvincibleTimer
 @onready var slide_request_timer: Timer = $SlideRequestTimer
 @onready var interaction_icon: AnimatedSprite2D = $InteractionIcon
+@onready var game_over_screen: Control = $CanvasLayer/GameOverScreen
 
 
 func _ready() -> void:
@@ -168,7 +169,7 @@ func slide(delta: float) -> void:
 
 
 func die() -> void:
-	get_tree().reload_current_scene()
+	game_over_screen.show_game_over()
 
 
 func register_interactable(v: Interactable) -> void:

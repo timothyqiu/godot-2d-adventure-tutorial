@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://d08n7x2g8jvfe"]
+[gd_scene load_steps=36 format=3 uid="uid://d08n7x2g8jvfe"]
 
 [ext_resource type="Texture2D" uid="uid://dg2rvq5qp11a2" path="res://assets/generic_char/char_blue_1.png" id="1_7ylvt"]
 [ext_resource type="Script" path="res://player.gd" id="1_vlv3c"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://classes/Hurtbox.gd" id="3_6gh42"]
 [ext_resource type="Script" path="res://classes/Hitbox.gd" id="4_ksant"]
 [ext_resource type="PackedScene" uid="uid://bgwkfcw43ryl8" path="res://ui/status_panel.tscn" id="8_kml5q"]
+[ext_resource type="PackedScene" uid="uid://enaocf67ilp0" path="res://ui/game_over_screen.tscn" id="8_s7ioa"]
 [ext_resource type="Texture2D" uid="uid://k6efxux5uoet" path="res://assets/gdb-gamepad-2/gdb-keyboard-2.png" id="9_a7vtb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vniip"]
@@ -2410,6 +2411,8 @@ offset_left = 8.0
 offset_top = 8.0
 offset_right = 96.0
 offset_bottom = 34.0
+
+[node name="GameOverScreen" parent="CanvasLayer" instance=ExtResource("8_s7ioa")]
 
 [node name="InteractionIcon" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -43)
