@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://b05ccqix45nhr"]
+[gd_scene load_steps=9 format=3 uid="uid://b05ccqix45nhr"]
 
 [ext_resource type="Script" path="res://worlds/cave.gd" id="1_jpulo"]
+[ext_resource type="AudioStream" uid="uid://dq1erq62u4xnv" path="res://assets/bgm/27 14 BOSS fixing LOOP.mp3" id="2_2ma08"]
 [ext_resource type="TileSet" uid="uid://dwpv7qqs1uq8f" path="res://assets/tiles.tres" id="2_s4l8f"]
 [ext_resource type="PackedScene" uid="uid://51vtw4x440s" path="res://objects/mine_gate.tscn" id="3_nq3m5"]
 [ext_resource type="Script" path="res://classes/EntryPoint.gd" id="4_7ennx"]
@@ -10,6 +11,7 @@
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_jpulo")
+bgm = ExtResource("2_2ma08")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("2_s4l8f")
