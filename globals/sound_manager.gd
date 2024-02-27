@@ -1,5 +1,7 @@
 extends Node
 
+enum Bus { MASTER, SFX, BGM }
+
 @onready var sfx: Node = $SFX
 @onready var bgm_player: AudioStreamPlayer = $BGMPlayer
 
@@ -26,3 +28,13 @@ func setup_ui_sounds(node: Node) -> void:
 	
 	for child in node.get_children():
 		setup_ui_sounds(child)
+
+
+func get_volume(bus_index: int) -> float:
+	var db := AudioServer.get_bus_volume_db(bus_index)
+	return db_to_linear(db)
+
+
+func set_volume(bus_index: int, v: float) -> void:
+	var db := linear_to_db(v)
+	AudioServer.set_bus_volume_db(bus_index, db)
