@@ -1,5 +1,7 @@
 extends AnimatedSprite2D
 
+# 触屏设备 DisplayServer.is_touchscreen_available()
+
 const STICK_DEADZONE := 0.3
 const MOUSE_DEADZONE := 16.0
 

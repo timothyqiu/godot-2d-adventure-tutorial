@@ -1,0 +1,113 @@
+[gd_scene load_steps=10 format=3 uid="uid://dqvy3p0lc1en2"]
+
+[ext_resource type="Texture2D" uid="uid://dddof00xq1dpo" path="res://assets/legacy_fantasy/HUD.png" id="1_qp57r"]
+[ext_resource type="Script" path="res://ui/Knob.gd" id="2_jy2kf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nvcdu"]
+atlas = ExtResource("1_qp57r")
+region = Rect2(140, 252, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mkku6"]
+atlas = ExtResource("1_qp57r")
+region = Rect2(140, 156, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_looqb"]
+atlas = ExtResource("1_qp57r")
+region = Rect2(140, 108, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o6e6v"]
+atlas = ExtResource("1_qp57r")
+region = Rect2(140, 60, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6i2e8"]
+atlas = ExtResource("1_qp57r")
+region = Rect2(374, 6, 52, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1jnhi"]
+atlas = ExtResource("1_qp57r")
+region = Rect2(50, 210, 12, 12)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4oyjl"]
+radius = 14.0
+
+[node name="VirtualJoypad" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_horizontal_guides_ = [163.0]
+
+[node name="Actions" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -58.0
+offset_top = -53.0
+offset_right = -58.0
+offset_bottom = -53.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="Actions"]
+position = Vector2(-12, 7)
+texture_normal = SubResource("AtlasTexture_nvcdu")
+action = "jump"
+visibility_mode = 1
+
+[node name="TouchScreenButton4" type="TouchScreenButton" parent="Actions"]
+position = Vector2(-12, -31)
+texture_normal = SubResource("AtlasTexture_mkku6")
+action = "slide"
+visibility_mode = 1
+
+[node name="TouchScreenButton2" type="TouchScreenButton" parent="Actions"]
+position = Vector2(-31, -12)
+texture_normal = SubResource("AtlasTexture_looqb")
+action = "attack"
+visibility_mode = 1
+
+[node name="TouchScreenButton3" type="TouchScreenButton" parent="Actions"]
+position = Vector2(7, -12)
+texture_normal = SubResource("AtlasTexture_o6e6v")
+action = "interact"
+visibility_mode = 1
+
+[node name="Stick" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 63.0
+offset_top = -53.0
+offset_right = 63.0
+offset_bottom = -53.0
+grow_vertical = 0
+
+[node name="Knob" type="TouchScreenButton" parent="Stick"]
+position = Vector2(-26, -26)
+texture_normal = SubResource("AtlasTexture_6i2e8")
+visibility_mode = 1
+script = ExtResource("2_jy2kf")
+
+[node name="Pause" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -25.0
+offset_top = 27.0
+offset_right = -25.0
+offset_bottom = 27.0
+grow_horizontal = 0
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="Pause"]
+position = Vector2(-6, -6)
+texture_normal = SubResource("AtlasTexture_1jnhi")
+shape = SubResource("CircleShape2D_4oyjl")
+action = "pause"
+visibility_mode = 1
