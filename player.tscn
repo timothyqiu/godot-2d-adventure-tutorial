@@ -2463,3 +2463,4 @@ animation = &"keyboard"
 script = ExtResource("12_qg3fq")
 
 [connection signal="hurt" from="Graphics/Hurtbox" to="." method="_on_hurtbox_hurt"]
+[connection signal="hit" from="Graphics/Hitbox" to="." method="_on_hitbox_hit"]

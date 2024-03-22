@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://b05ccqix45nhr"]
+[gd_scene load_steps=10 format=3 uid="uid://b05ccqix45nhr"]
 
 [ext_resource type="Script" path="res://worlds/cave.gd" id="1_jpulo"]
 [ext_resource type="AudioStream" uid="uid://dq1erq62u4xnv" path="res://assets/bgm/27 14 BOSS fixing LOOP.mp3" id="2_2ma08"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://classes/EntryPoint.gd" id="4_7ennx"]
 [ext_resource type="PackedScene" uid="uid://btn7p3ng6glfl" path="res://objects/save_stone.tscn" id="5_5hjay"]
 [ext_resource type="PackedScene" uid="uid://d08n7x2g8jvfe" path="res://player.tscn" id="5_mnfga"]
+[ext_resource type="Script" path="res://classes/ShakyCamera.gd" id="8_cbj4e"]
 [ext_resource type="PackedScene" uid="uid://bys6xbjr8eger" path="res://enemies/boar.tscn" id="10_oqvwl"]
 
 [node name="World" type="Node2D"]
@@ -39,11 +40,13 @@ position = Vector2(368, 288)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(0, -14)
+process_callback = 0
 limit_smoothed = true
 position_smoothing_enabled = true
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 editor_draw_drag_margin = true
+script = ExtResource("8_cbj4e")
 
 [node name="Decorations" type="Node2D" parent="."]
 metadata/_edit_lock_ = true

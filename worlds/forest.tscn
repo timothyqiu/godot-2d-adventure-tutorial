@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bmfcrratgaax0"]
+[gd_scene load_steps=14 format=3 uid="uid://bmfcrratgaax0"]
 
 [ext_resource type="Script" path="res://worlds/world.gd" id="1_f0dk2"]
 [ext_resource type="Texture2D" uid="uid://mp1ebc7vgi6r" path="res://assets/legacy_fantasy/Trees/Tree-Assets.png" id="2_1qp64"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://btn7p3ng6glfl" path="res://objects/save_stone.tscn" id="5_lwerj"]
 [ext_resource type="Texture2D" uid="uid://cm3ahnc8s7hw" path="res://assets/legacy_fantasy/Background/Background.png" id="6_cavlc"]
 [ext_resource type="Texture2D" uid="uid://cjfeccnxygvqq" path="res://assets/legacy_fantasy/Trees/Background-Hills.png" id="7_jt3dx"]
+[ext_resource type="Script" path="res://classes/ShakyCamera.gd" id="8_bvjhr"]
 [ext_resource type="Texture2D" uid="uid://bhvt8r63i50qa" path="res://assets/legacy_fantasy/Trees/Background-Trees.png" id="8_nnvqc"]
 [ext_resource type="PackedScene" uid="uid://bys6xbjr8eger" path="res://enemies/boar.tscn" id="9_gket7"]
 
@@ -55,11 +56,13 @@ position = Vector2(528, 144)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(0, -14)
+process_callback = 0
 limit_smoothed = true
 position_smoothing_enabled = true
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 editor_draw_drag_margin = true
+script = ExtResource("8_bvjhr")
 
 [node name="Decorations" type="Node2D" parent="."]
 metadata/_edit_lock_ = true
