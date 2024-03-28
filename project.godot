@@ -13,7 +13,7 @@ config_version=5
 config/name="2D Adventure"
 run/main_scene="res://ui/title_screen.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
-config/icon="res://assets/icon.svg"
+config/icon="res://assets/icon.png"
 
 [autoload]
 
@@ -25,10 +25,10 @@ SoundManager="*res://globals/sound_manager.tscn"
 
 window/size/viewport_width=384
 window/size/viewport_height=216
-window/size/always_on_top=true
 window/size/window_width_override=1152
 window/size/window_height_override=648
 window/stretch/mode="canvas_items"
+window/size/always_on_top.editor=true
 
 [input]
 
@@ -104,3 +104,4 @@ pause={
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true
